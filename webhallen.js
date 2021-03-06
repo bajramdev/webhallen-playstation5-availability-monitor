@@ -35,35 +35,18 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var node_fetch_1 = require("node-fetch");
-var url = 'https://www.webhallen.com/api/product/320479';
+exports.__esModule = true;
 setInterval(function Scrape() {
     return __awaiter(this, void 0, void 0, function () {
-        var data;
+        var url, a;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, node_fetch_1.default(url)
-                        .then(function (res) { return res.json(); })
-                        .then(function (el) {
-                        var url = "https://www.webhallen.com/api/product/320479";
-                        var semi = "/images/product/320479?trim&h=80";
-                        var a = url.replace(new RegExp('api.*$'), semi);
-                        console.log(a);
-                        var product = {
-                            productLink: "https://www.webhallen.com/se/product/320479-Playstation-5-Digital-Edition",
-                            name: el.product.name,
-                            image: url.replace(new RegExp('api.*$'), el.product.thumbnail),
-                            price: el.product.price.price,
-                            currency: el.product.price.currency,
-                            stock: el.product.stock.web //Stock info from web
-                        };
-                        if (product.stock > 1) {
-                            console.log(product);
-                        }
-                    })];
+                case 0:
+                    url = 'https://www.webhallen.com/api/product/320479';
+                    return [4 /*yield*/, fetch(url)];
                 case 1:
-                    data = _a.sent();
+                    a = _a.sent();
+                    console.log(a.body);
                     return [2 /*return*/];
             }
         });

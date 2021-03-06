@@ -15,6 +15,8 @@ setInterval(function Scrape() {
 
             let a = url.replace(new RegExp('api.*$'), semi);
 
+            let a = url.replace(new RegExp('[0-9]{6}'), semi);
+
 
             const product : IProduct = {
                 productLink : "https://www.webhallen.com/se/product/320479-Playstation-5-Digital-Edition",

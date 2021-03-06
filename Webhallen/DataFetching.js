@@ -1,18 +1,20 @@
-import  fetch from 'node-fetch';
+let fetch = require('node-fetch');
+let got = require('got');
 
 
-class DataFetching{
+(async () => {
 
-
-
-    constructor() {
-
-
-
+    let config = {
+        responseType: 'json'
     }
 
+    let url  = 'https://www.webhallen.com/api/product/320479';
 
-}
+    let response =  await got(url, config)
 
 
-module.exports = DataFetching;
+    let product = response.body.product
+    console.log()
+
+
+})();
