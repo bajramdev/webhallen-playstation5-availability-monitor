@@ -1,4 +1,5 @@
 let got = require('got');
+let Product = require('./Product')
 
 let RegexForProductID = RegExp('[0-9]{6}');
 
@@ -9,10 +10,11 @@ async function asd(){
             responseType: 'json'
         }
 
-        let url = "https://www.webhallen.com/se/product/330513-Pokemon-Sword-Shield-4-5-Shining-Fates-Tin-V"
+        let url = "https://www.webhallen.com/se/product/321654-Dell-Inspiron-G3-15-3500-15-6-FHD-IPS-i5-10300H-8GB-512GB-GTX-1650-Win-10"
 
         let prodID = RegexForProductID.exec(url)
 
+    let newProducts = [];
 
         let endPointURL = `https://www.webhallen.com/api/product/${prodID[0]}`;
 
@@ -21,8 +23,20 @@ async function asd(){
 
 
         let product = response.body.product
-        console.log(product)
 
+
+        let el = Object.values(product.stock);
+
+    el = el.filter(x => typeof x === 'number'); // remove all elements that are not numbers
+    el.forEach(stock => {
+
+        let product = new Product(stock, this.sellerUrl);
+        product.updateInfo(product)
+        newProducts = [...newProducts, product];
+    })
+
+
+    console.log()
 
     }
 

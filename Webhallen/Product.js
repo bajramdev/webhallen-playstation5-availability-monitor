@@ -1,10 +1,10 @@
 class Product {
-    constructor(productUrl , name="", url = "", thumbnail = "", stock = {}) {
-        this.productUrl = productUrl;
+
+    constructor(stock, name="", url = "", thumbnail = "") {
+        this.stock = stock;
         this.name = name;
         this.url = url;
         this.thumbnail = thumbnail;
-        this.stock = stock;
     }
 
 
@@ -15,8 +15,7 @@ class Product {
 
     this.thumbnail = id.thumbnail;
 
-    let a = id.replace(new RegExp('api.*$'), this.thumbnail);
-
+    console.log(this)
 
 
 

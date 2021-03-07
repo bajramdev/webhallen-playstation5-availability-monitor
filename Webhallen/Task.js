@@ -8,7 +8,7 @@ class Task {
     constructor(taskSetup) {
 
         this.sellerUrl = taskSetup.url;
-        this.firstIter = true;
+        this.firstIteration = true;
         this.sellerId = taskSetup._id
     }
 
@@ -32,7 +32,30 @@ class Task {
             let response =  await got(endPointURL, config)
 
 
-            let product = response.body.product
+            let products = response.body.product
+
+            if (this.firstIteration){
+
+                let newProducts = [];
+
+               let productStockArray = Object.values(products.stock);
+
+               productStockArray = productStockArray.filter(x => typeof x === 'number'); // remove all elements that are not numbers
+               productStockArray.forEach(x => {
+
+                   let product = new Product(x, this.sellerUrl);
+                   newProducts = [...newProducts, product];
+               })
+
+                /**
+                 *
+                 * @todo add mongodb here
+                 */
+                this.firstIteration = false;
+
+
+            }
+
             console.log(product)
 
         }, 1000 )
